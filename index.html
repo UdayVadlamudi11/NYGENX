@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link href="/assets/nyaya-logo-DnGHQZx4.png" rel="icon" type="image/png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="NYGENX - The operating system for next-gen business. Custom AI agents, ERP, cloud, and cinematic creative production in one unified intelligence layer." name="description" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <title>NYGENX - Operating System for Next-Gen Business</title>
+    <link crossorigin="" href="/assets/index-TEYcg7K4.css" rel="stylesheet" />
+    <script>
+      (function () {
+        var proto = XMLHttpRequest.prototype;
+        var open = proto.open, setRequestHeader = proto.setRequestHeader, send = proto.send;
+        var TOKEN_KEY = 'base44_access_token';
+        var storedTokenHeader = function () {
+          try { return 'Bearer ' + localStorage.getItem(TOKEN_KEY); } catch (e) { return null; }
+        };
+        var forgetStoredToken = function () {
+          try { localStorage.removeItem(TOKEN_KEY); localStorage.removeItem('token'); } catch (e) {}
+        };
+
+        proto.open = function (method, url) {
+          this.__b44IsAuthCheck = /\/entities\/User\/me(\?|$)/.test(url);
+          return open.apply(this, arguments);
+        };
+
+        proto.setRequestHeader = function (name, value) {
+          if (this.__b44IsAuthCheck && name.toLowerCase() === 'authorization' && value === storedTokenHeader()) {
+            this.__b44SentToken = value;
+          }
+          return setRequestHeader.call(this, name, value);
+        };
+
+        proto.send = function () {
+          this.addEventListener('loadend', function () {
+            var rejectedTokenStillStored = this.status === 401 && this.__b44SentToken === storedTokenHeader();
+            if (rejectedTokenStillStored) forgetStoredToken();
+          });
+          return send.apply(this, arguments);
+        };
+      })();
+    </script>
+    <meta content="yes" name="mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="NyGenx Digital HQ" name="apple-mobile-web-app-title" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script crossorigin="" src="/assets/index-wyCdPrPU.js" type="module"></script>
+  </body>
+</html>

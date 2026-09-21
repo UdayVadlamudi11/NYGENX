@@ -1,0 +1,19 @@
+{
+  "name": "nygenx-app",
+  "version": "1.0.0",
+  "description": "NYGENX — Operating System for Next-Gen Business",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "nygenx",
+    "ai",
+    "erp",
+    "studio",
+    "operating-system"
+  ],
+  "author": "NYGENX Team",
+  "license": "ISC"
+}
